@@ -7,6 +7,7 @@ import Order from '../views/manager/Order'
 import User from '../views/manager/User'
 import Address from '../views/manager/address/Address'
 import AddAddress from '../views/manager/address/AddAddress'
+import ProductList from '../views/manager/ProductList'
 
 import Login from '../views/Login'
 
@@ -41,11 +42,10 @@ const routes = [
       {
         path: 'addaddress',
         component: ()=>import('../views/manager/address/AddAddress') 
-      },
-      {
-        path: 'productlist',
+      },{
+        path:'productList',
         component: ProductList
-      },
+      }
     ] 
   },
   {

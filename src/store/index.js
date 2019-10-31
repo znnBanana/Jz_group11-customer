@@ -7,6 +7,9 @@ import order from './modules/order'
 import home from './modules/home'
 import address from './modules/address'
 import addaddress from './modules/addaddress'
+import category from './modules/category'
+import product from './modules/product'
+import shopcar from './modules/shopcar'
 
 
 export default new Vuex.Store({
@@ -16,6 +19,9 @@ export default new Vuex.Store({
     order,  
     home,
     address,
-    addaddress
+    addaddress,
+    category,
+    product,
+    shopcar
   }
 })

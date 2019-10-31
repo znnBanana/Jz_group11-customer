@@ -7,8 +7,8 @@
         <van-tabs v-model="status">
             <van-tab title="全部订单">
             </van-tab>
-            <van-tab title="未付款" name="未付款"></van-tab>
-            <van-tab title="未服务" name="待服务"></van-tab>
+            <!-- <van-tab title="未付款" name="未付款"></van-tab> -->
+            <van-tab title="待服务" name="待派单"></van-tab>
             <van-tab title="待确认" name="待确认"></van-tab>
             <van-tab title="已完成" name="已完成"></van-tab>
         </van-tabs>
