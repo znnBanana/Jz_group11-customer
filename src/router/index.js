@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+// 管理页面
 import Manager from '../views/manager/Index'
 import Home from '../views/manager/Home'
 import Order from '../views/manager/Order'
 import User from '../views/manager/User'
-import Address from '../views/manager/Address'
-import AddAddress from '../views/AddAddress'
+import Address from '../views/manager/address/Address'
+import AddAddress from '../views/manager/address/AddAddress'
 
 import Login from '../views/Login'
 
@@ -36,14 +36,17 @@ const routes = [
       },
       {
         path: 'address',
-        component: Address,
+        component: ()=>import('../views/manager/address/Address') 
+      },
+      {
+        path: 'addaddress',
+        component: ()=>import('../views/manager/address/AddAddress') 
+      },
+      {
+        path: 'productlist',
+        component: ProductList
       },
     ] 
-  },
-  {
-    path: '/addaddress',
-    name: 'addaddress',
-    component: AddAddress,
   },
   {
     path: '/login',

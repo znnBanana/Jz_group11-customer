@@ -35,7 +35,7 @@ export default {
             .then((response)=>{
                 let addresses = [];
                 response.data.forEach(item=>{
-                    console.log(item,'===')
+                    // console.log(item,'===')
                     let address = {
                         id: item.id,
                         name: 'znn',

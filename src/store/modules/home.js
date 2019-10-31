@@ -1,4 +1,4 @@
-import {get} from "../../http/axios"
+import {get,post} from "../../http/axios"
 
 export default {
     namespaced: true,
@@ -23,9 +23,9 @@ export default {
             // 将查询结果更新到state中
             context.commit("refreshCategories",response.data)
         },
-        async findAllProducts(context){
-            let response = await get("/product/findAll")
-            context.commit("refreshProducts",response.data)
+        async findAllProducts(context,payload){
+            let response = await post("/product/query",payload)
+            context.commit("refreshProducts",response.data.list)
         }
 
     },

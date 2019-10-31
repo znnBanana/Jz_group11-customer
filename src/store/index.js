@@ -13,7 +13,7 @@ export default new Vuex.Store({
   
   modules: {
     user,
-    order,
+    order,  
     home,
     address,
     addaddress

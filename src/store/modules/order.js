@@ -23,9 +23,11 @@ export default {
         
     },
     actions: {
-        async findAllOrder(context){
-            let response = await get("/order/findAll")
-            context.commit("refreshOrder",response.data)
+        // 查询当前用户的所有订单
+        async findAllOrder({commit,rootState}){
+            let customerId = rootState.user.userInfo.id
+            let response = await get("/order/query",{customerId})
+            commit("refreshOrder",response.data)
         }
     },
 }

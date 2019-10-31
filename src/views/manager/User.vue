@@ -44,7 +44,7 @@ export default {
             })
         },
         reloadAddress(path){
-            this.$router.push({path:'./Address'})
+            this.$router.push({path:'/manager/address'})
         }
     }
 }
