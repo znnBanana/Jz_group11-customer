@@ -6,12 +6,11 @@
             left-arrow
             @click-left="returnHandler"
         /></div>
-        <!-- {{addresses}} -->
             <van-address-list
-                :v-model="chosenAddressId"
+                v-model="chosenAddressId"
                 :list="addresses"
                 @add="onAdd"
-                @edit="onEdit"
+                @edit="onEdit(chosenAddressId)"
             />
         
     </div>
@@ -23,7 +22,7 @@ import {mapState, mapActions,mapMutations} from 'vuex'
 export default {
     data(){
         return{
-        chosenAddressId:'1',
+            chosenAddressId:1,
         }
     },
     created(){
@@ -43,8 +42,11 @@ export default {
         onAdd(){
             this.$router.push({path:"/manager/addaddress"})
         },
-        onEdit(){
-            alert("修改")
+        onEdit(id){
+            this.$router.push({
+                path:'./editadress',
+                query:{id}
+            })
         }
     }
 }

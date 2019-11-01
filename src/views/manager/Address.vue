@@ -6,7 +6,6 @@
             left-arrow
             @click-left="returnHandler"
         /></div>
-        <!-- {{addresses}} -->
             <van-address-list
                 :v-model="chosenAddressId"
                 :list="addresses"

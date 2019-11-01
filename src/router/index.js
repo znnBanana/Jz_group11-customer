@@ -7,7 +7,9 @@ import Order from '../views/manager/Order'
 import User from '../views/manager/User'
 import Address from '../views/manager/address/Address'
 import AddAddress from '../views/manager/address/AddAddress'
+import editAdress from '../views/manager/address/editAdress'
 import ProductList from '../views/manager/ProductList'
+import Comment from '../views/manager/Comment'
 
 import Login from '../views/Login'
 
@@ -38,6 +40,9 @@ const routes = [
       {
         path: 'address',
         component: ()=>import('../views/manager/address/Address') 
+      },{
+        path: 'editadress',
+        component: ()=>import('../views/manager/address/editAdress') 
       },
       {
         path: 'addaddress',
@@ -45,6 +50,9 @@ const routes = [
       },{
         path:'productList',
         component: ProductList
+      },{
+        path:'comment',
+        component: Comment
       }
     ] 
   },

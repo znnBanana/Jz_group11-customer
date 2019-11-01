@@ -8,11 +8,12 @@
             @click-left="returnHandler"
         /></div>
         <van-address-edit
+            v-model="form"
             :area-list="areaList"   
             show-delete
             show-search-result
             :search-result="searchResult"
-            @save="onSave"
+            @save="saveAddress"
             @delete="onDelete"
         />
         {{userInfo}}
@@ -20,25 +21,29 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState,mapActions } from 'vuex'
 import areaList from '../../../utils/areaList'
 export default {
     data(){
         return{
             areaList,
-            searchResult: []
+            searchResult: [],
+            form:{}
         }
     },
     computed:{
         ...mapState("user",["userInfo"])
     },
     methods:{
+        ...mapActions("addaddress",["onSave"]),
         returnHandler(){
             this.$router.push({path:"/manager/address"})
         },
         // 保存地址信息
-        onSave(a){
-            console.log(a)
+        saveAddress(info){
+            this.onSave(info);
+             this.$router.push({path:"/manager/address"})
+
         },
         onDelete(){
 

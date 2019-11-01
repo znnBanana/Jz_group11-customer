@@ -3,7 +3,6 @@
         <!-- 标题 -->
         <h2 style="text-align:center">我的</h2>
         <!-- 头像 -->
-        <!-- {{userInfo}} -->
         <div class="img_user">
             <img :src="userInfo.avatar" />
         </div>
@@ -15,7 +14,6 @@
             <van-cell @click.prevent="reloadAddress" icon="location-o" title="常用地址"/>
             <van-cell @click.prevent="logoutHandler" icon="close" title="退出"/>
         </van-cell-group>
-        {{userInfo}}
     </div>
 </template>
 

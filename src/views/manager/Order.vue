@@ -13,7 +13,7 @@
             <van-tab title="已完成" name="已完成"></van-tab>
         </van-tabs>
         <!-- 商品列表 -->
-        <div class="o_list" v-for="o in orderStatusFilter(this.status)" :key="o.id">
+        <div class="o_list" v-for="o in orderStatusFilter(status)" :key="o.id">
             <van-row type="flex" justify="space-around">
             <van-col span="10">
                 <!-- <div> -->
@@ -21,9 +21,17 @@
                 <!-- </div> -->
             </van-col>
             <van-col span="16">
-                <p class="orderTime">下单时间：{{o.orderTime}}</p>
+                <p class="orderTime">下单时间：{{setTime(o.orderTime)}}</p>
                 <p class="total">总额：{{o.total}}</p>
                 <p class="status">进度：{{o.status}}</p>
+                <p v-show="status == '已完成'">
+                    <van-button icon="comment" type="primary" size="mini" round style="margin-right:10px" @click="toComment(o.id)"/>
+                    <van-button icon="clear" type="danger" size="mini" round @click="deleteOrder(o.id)"/>
+                </p>
+                <p v-show="status == '待确认'">
+                    <van-button icon="certificate" type="primary" size="mini" round @click="qddd(o.id)"/>
+                </p>
+
             </van-col>
         </van-row>
         </div>
@@ -31,7 +39,9 @@
 </template>
 
 <script>
+import moment from 'moment'
 import { mapState, mapActions,mapGetters } from 'vuex'
+import { get } from '../../http/axios'
 export default {
     data() {
         return {
@@ -43,11 +53,28 @@ export default {
     },
     computed:{
         ...mapState("order",["orders"]),
-        ...mapGetters("order",["orderStatusFilter"])
+        ...mapGetters("order",["orderStatusFilter"]),
+        
     },
     methods:{
-        ...mapActions("order",["findAllOrder"])
-
+        ...mapActions("order",["findAllOrder"]),
+        setTime(time){
+            return moment(time).format('LL');
+        },
+        toComment(id){
+            this.$router.push({
+                path:'./Comment',
+                query:{id}
+            })
+        },
+        async deleteOrder(id){
+            let response = await get("/order/deleteById?id="+id);
+            this.findAllOrder()
+        },
+        qddd(id){
+            get("/order/confirmOrder?orderId="+id);
+            this.findAllOrder()
+        }
     }
     
 }
