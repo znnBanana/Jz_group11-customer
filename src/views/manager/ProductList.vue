@@ -5,21 +5,31 @@
                 <!-- 侧边导航 -->
                 <van-col :span="4">
                     <van-sidebar v-model="activekey">
-                        <van-sidebar-item v-for="c in categories" :key="c.id" :title="c.name" @click="categoryId = c.id"></van-sidebar-item>
+                        <van-sidebar-item 
+                        v-for="c in categories" 
+                        :key="c.id" :title="c.name" 
+                        @click="categoryId = c.id">
+                        </van-sidebar-item>
                     </van-sidebar>
                 </van-col>
                 <!-- 右侧产品 -->
                 <van-col :span="20">
                     <div class="right-content">
-                        <briup-product-item v-for="p in productCategoryFilter(categoryId)"
-                        :key="p.id" :data="p"></briup-product-item>
+                        <briup-product-item 
+                        v-for="p in productCategoryFilter(categoryId)"
+                        :key="p.id" 
+                        :data="p">
+                        </briup-product-item>
                     </div>
                 </van-col>
             </van-row>
 
             <van-row class="car">
                 <van-col :span="4">总额<strong>￥{{total}}</strong></van-col>
-                <van-col :offset="16" :span="4" @click="toConfirmOrderHandler">立即下单</van-col>
+                <van-col 
+                :offset="16" 
+                :span="4" 
+                @click="toConfirmOrderHandler">立即下单</van-col>
             </van-row>
         </div>
     </briup-fulllayout>
@@ -45,9 +55,10 @@ export default {
         // 查询所有栏目信息
         this.findAllCategories();
         // 查询所有产品信息
+        console.log(this.$route.query.activekey,'0000')
         this.queryProduct({page:0,pageSize:20000000});
         this.categoryId = this.$route.query.id;
-        this.activeKey = this.$route.query.activeKey;
+        this.activekey = this.$route.query.activekey;
     },
     methods:{
         ...mapActions('category',['findAllCategories']),

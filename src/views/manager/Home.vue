@@ -39,7 +39,6 @@ export default {
     },
     created(){
         this.findAllCategories();
-        // this.findAllProducts();
         this.findAllProducts({page:0,pageSize:4})
     },
     computed:{

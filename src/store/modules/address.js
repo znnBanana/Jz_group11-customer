@@ -1,4 +1,5 @@
 import { get } from "../../http/axios";
+import { root } from "postcss-selector-parser";
 // import user from "./user";
 // import address from "address";
 
@@ -9,19 +10,7 @@ export default {
     },
     mutations: {
         refreshAddress(state,addresses){
-            // console.log(addresses,'======')
-            // addresses.forEach((item)=>{
-            //     state.addresses = [];
-            //     let d={
-            //         id:item.id,
-            //         name:item.province,
-            //         tel:item.telephone,
-            //         address:item.address
-            //     }
-            //     state.addresses.push(d);
-            // })
             state.addresses = addresses
-
         }   
     },
     actions: {
@@ -29,9 +18,9 @@ export default {
         //     let response = await get("/address/findByCustomerId",{id:rootState.user.userInfo.id})
         //     commit("refreshAddress",response.data)
         // },
-        async findAddress(context,id){
+        async findAddress({commit,rootState}){
             // 根据用户id查询地址
-            let response = await get("/address/findByCustomerId?id="+id)
+            let response = await get("/address/findByCustomerId",{id:rootState.user.userInfo.id})
             .then((response)=>{
                 let addresses = [];
                 response.data.forEach(item=>{
@@ -44,7 +33,7 @@ export default {
                     }
                     addresses.push(address);
                 })
-                context.commit("refreshAddress",addresses)
+                commit("refreshAddress",addresses)
                 // console.log(response)
             })
         }
