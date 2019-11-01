@@ -5,6 +5,7 @@ export default {
     orderLines:[]
   },
   getters:{
+    // 计算购物车总额
     total(state){
       let total = 0;
       state.orderLines.forEach((item)=>{
@@ -18,6 +19,7 @@ export default {
     clearShopcar(state){
       state.orderLines = [];
     },
+    // 添加购物车
     //{productId,productName,price,number}
     addShopcar(state,orderLine){
       // 如果orderlines中有该产品，只需要更改数量即可，如果没有，直接push
@@ -32,8 +34,6 @@ export default {
       } else {
         state.orderLines.push(orderLine);
       }
-
-
      // state.orderLines.push(orderLine)
     }
   }

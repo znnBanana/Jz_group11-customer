@@ -9,7 +9,7 @@ export default {
     mutations: {
         refreshCategories(state,categories){
             state.categories = categories
-            console.log(categories)
+            // console.log(categories)
         },
         refreshProducts(state,products){
             state.products = products
@@ -25,6 +25,10 @@ export default {
         },
         async findAllProducts(context,payload){
             let response = await post("/product/query",payload)
+            // 为每个产品添加一个number属性
+            response.data.list.forEach(item=>{
+                item.number = 0;
+            })
             context.commit("refreshProducts",response.data.list)
         }
 
